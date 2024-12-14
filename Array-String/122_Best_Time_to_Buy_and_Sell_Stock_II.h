@@ -38,3 +38,34 @@ public:
 		return ret;
 	}
 };
+
+
+class Solution {
+public:
+	int maxProfit(vector<int>& prices) {
+
+		int ret = 0;
+
+		for (int i = 0; i < prices.size() -1;)
+		{
+			while (i < prices.size() - 1 && prices[i + 1] < prices[i])
+			{
+				i++;
+			}
+
+			int buy = prices[i];
+
+			while (i < prices.size() - 1 && prices[i] < prices[i + 1])
+			{
+				i++;
+			}
+
+			ret += prices[i] - buy;
+
+			i++;
+		}
+
+		return ret;
+
+	}
+};

@@ -97,3 +97,62 @@ public:
 		return 0 == last;
 	}
 };
+
+class Solution {
+public:
+	bool canJump(vector<int>& nums) {
+
+		int index = nums.size() - 2;
+
+		int max = nums.size() - 1;
+
+		while (0 <= index)
+		{
+			if (max <= index + nums[index])
+			{
+				max = index;
+			}
+			index--;
+		}
+
+		return max == 0;
+	}
+
+};
+
+
+class Solution {
+public:
+	bool canJump(vector<int>& nums) {
+
+		if (1 == nums.size())
+		{
+			return true;
+		}
+
+		int max = nums.size() - 1;
+
+		vector<bool> dp(nums.size());
+
+		for (int i = nums.size() - 2; 0 <= i; i--)
+		{
+			if (max <= i + nums[i])
+			{
+				dp[i] = true;
+				continue;
+			}
+
+			for (int a = 1; a <= nums[i]; a++)
+			{
+				if(dp[i + a])
+				{ 
+					dp[i] = true;
+					break;
+				}
+			}
+		}
+
+		return dp[0];
+
+	}
+};

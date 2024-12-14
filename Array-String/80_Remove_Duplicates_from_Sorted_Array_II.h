@@ -132,3 +132,93 @@ public:
 		return index;
 	}
 };
+
+class Solution {
+public:
+	int removeDuplicates(vector<int>& nums) {
+
+		int index = 1;
+		int count = 1;
+
+		for(int i = 1; i < nums.size(); i++)
+		{ 
+			if (nums[i - 1] != nums[i])
+			{
+				nums[index] = nums[i];
+				index++;
+				count = 1;
+			}
+			else
+			{
+				count++;
+
+				if (count <= 2)
+				{
+					nums[index] = nums[i];
+					index++;
+				}
+			}
+
+		}
+
+		return index;
+	}
+};
+ 
+class Solution {
+public:
+	int removeDuplicates(vector<int>& nums) {
+
+		int index = 1;
+		int count = 1;
+
+		for (int i = 1; i < nums.size(); i++)
+		{
+			if (nums[i - 1] != nums[i])
+			{
+				count = 1;
+			}
+			else
+			{
+				count++;
+			}
+
+			if (count <= 2)
+			{
+				nums[index++] = nums[i];
+			}
+		}
+
+		return index;
+	}
+};
+
+
+
+class Solution {
+public:
+	int removeDuplicates(vector<int>& nums) {
+
+		int count = 1;
+
+		for (int i = 1; i < nums.size(); i++)
+		{
+			if (nums[i - 1] == nums[i])
+			{
+				count++;
+			}
+			else
+			{
+				count = 1;
+			}
+
+			if (2 < count)
+			{
+				nums.erase(nums.begin() + i);
+				i--;
+			}
+		}
+
+		return nums.size();
+	}
+};
