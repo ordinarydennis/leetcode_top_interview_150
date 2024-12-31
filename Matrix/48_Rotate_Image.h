@@ -77,3 +77,23 @@ private:
 		}
 	}
 };
+
+class Solution {
+public:
+	void rotate(vector<vector<int>>& matrix) {
+
+		int max = matrix.size() - 1;
+
+		for (int y = 0; y <= max / 2; y++)
+		{
+			for (int x = y; x < max - y; x++)
+			{
+				int temp = matrix[y][x];
+				matrix[y][x] = matrix[max - x][y];
+				matrix[max - x][y] = matrix[max - y][max - x];
+				matrix[max - y][max - x] = matrix[x][max - y];
+				matrix[x][max -y] = temp;
+			}
+		}
+	}
+};
