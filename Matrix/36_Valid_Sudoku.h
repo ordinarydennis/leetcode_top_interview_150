@@ -44,3 +44,53 @@ public:
 		return true;
 	}
 };
+
+class Solution {
+public:
+	bool isValidSudoku(vector<vector<char>>& board) {
+
+		int maxY = board.size();
+		int maxX = board[0].size();
+
+		for (int y = 0; y < maxY; y++)
+		{
+
+			unordered_set<int> set1;
+			unordered_set<int> set2;
+			unordered_set<int> set3;
+
+			for (int x = 0; x < maxX; x++)
+			{
+				if ('.' != board[y][x])
+				{
+					int n = board[y][x] - '0';
+					if (set1.count(n))
+						return false;
+					set1.insert(n);
+				}
+			
+				if ('.' != board[x][y])
+				{
+					int n = board[x][y] - '0';
+					if (set2.count(n))
+						return false;
+					set2.insert(n);
+				}
+
+				int x2 = (y % 3) * 3 + (x % 3);
+				int y2 = (y / 3) * 3 + (x / 3);
+
+				if ('.' != board[y2][x2])
+				{
+					int n = board[y2][x2] - '0';
+					if (set3.count(n))
+						return false;
+					set3.insert(n);
+				}	
+			}
+
+		}
+
+		return true;
+	}
+};
