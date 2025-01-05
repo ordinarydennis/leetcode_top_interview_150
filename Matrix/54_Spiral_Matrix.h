@@ -94,3 +94,54 @@ public:
 	}
 };
 
+
+
+class Solution {
+public:
+	vector<int> spiralOrder(vector<vector<int>>& matrix) {
+
+		int minX = 0;
+		int minY = 0;
+		int maxX = matrix[0].size() - 1;
+		int maxY = matrix.size() - 1;
+
+		vector<int> ret;
+
+		while (ret.size() < matrix[0].size() * matrix.size())
+		{
+			for (int i = minX; i <= maxX; i++)
+			{
+				ret.push_back(matrix[minY][i]);
+			}
+
+			for (int i = minY + 1; i <= maxY; i++)
+			{
+				ret.push_back(matrix[i][maxX]);
+			}
+
+			if (minY < maxY)
+			{
+				for (int i = maxX - 1; minX <= i; i--)
+				{
+					ret.push_back(matrix[maxY][i]);
+				}
+			}
+
+			if (minX < maxX)
+			{
+				for (int i = maxY - 1; minY < i; i--)
+				{
+					ret.push_back(matrix[i][minX]);
+				}
+			}
+
+			minX++;
+			maxX--;
+			minY++;
+			maxY--;
+		}
+
+		return ret;
+	}
+};
+
