@@ -1,0 +1,61 @@
+class Solution {
+public:
+	bool wordPattern(string pattern, string s) {
+
+		unordered_map<char, string> m;
+
+		unordered_map<string, char> m2;
+
+		string str;
+
+		int index = 0;
+
+		for (int i = 0; i <= s.size(); i++)
+		{
+			if (i < s.size() && ' ' != s[i])
+			{
+				str += s[i];
+				continue;
+			}
+
+			if(i == s.size() || ' ' == s[i])
+			{
+				auto it = m.find(pattern[index]);
+	
+				if(m.end() == it)
+				{
+					if (m2.count(str))
+					{
+						return false;
+					}
+
+					m2[str] = pattern[index];
+					m[pattern[index]] = str;					
+				}
+				else
+				{
+					auto it2 = m2.find(it->second);
+
+					if (m2.end() == it2)
+					{
+						return false;
+					}
+
+					if (pattern[index] != it2->second)
+					{
+						return false;
+					}
+					
+					if (it->second != str)
+					{
+						return false;
+					}
+				}
+				str.clear();
+				index++;
+			}
+		}
+
+		return pattern.size() == m2.size();
+	}
+};
