@@ -64,18 +64,13 @@ class Solution {
 public:
 	bool wordPattern(string pattern, string s) {
 
-		if (pattern.size() == s.size())
-		{
-			return false;
-		}
-
-
 		string str;
 		int index = 0;
 
 		unordered_map<char, string> m1;
 		unordered_map<string, char> m2;
 
+		int strCount = 0;
 		for (int i = 0; i <= s.size(); i++)
 		{
 			if (i < s.size() && ' ' != s[i])
@@ -103,10 +98,12 @@ public:
 
 				index++;
 				str.clear();
+				strCount++;
+
 			}
 
 		}
 
-		return true;
+		return pattern.size() == strCount;
 	}
 };

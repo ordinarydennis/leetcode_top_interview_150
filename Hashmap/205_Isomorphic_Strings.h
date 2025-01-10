@@ -66,3 +66,52 @@ public:
 		return true;
 	}
 };
+
+
+class Solution {
+public:
+	bool isIsomorphic(string s, string t) {
+
+		if (s.size() != t.size())
+		{
+			return false;
+		}
+
+		unordered_map<char, int> m1;
+		unordered_map<char, int> m2;
+
+		int index;
+		 
+		for (int i = 0; i < s.size(); i++)
+		{
+			if (0 == m1.count(s[i]))
+			{
+				m1[s[i]] = index;
+			}
+
+			if (0 == m2.count(t[i]))
+			{
+				m2[t[i]] = index;
+			}
+
+			if (m1.count(s[i]) && m2.count(t[i]))
+			{
+				if (m1[s[i]] != m2[t[i]])
+				{
+					return false;
+				}
+			}
+			else if (
+				0 == m1.count(s[i]) && m2.count(t[i]) || 
+					m1.count(s[i]) && 0 == m2.count(t[i])
+				)
+			{
+				return false;
+			}
+			
+			index++;
+		}
+
+		return true;
+	}
+};
