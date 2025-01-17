@@ -25,6 +25,3 @@ public:
 		return false;
 	}
 };
-
-13
-
