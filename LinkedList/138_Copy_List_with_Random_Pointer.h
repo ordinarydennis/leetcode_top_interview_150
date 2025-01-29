@@ -71,3 +71,81 @@ public:
 		return newHead;
 	}
 };
+
+/*
+// Definition for a Node.
+class Node {
+public:
+	int val;
+	Node* next;
+	Node* random;
+
+	Node(int _val) {
+		val = _val;
+		next = NULL;
+		random = NULL;
+	}
+};
+*/
+
+class Solution {
+
+	std::unordered_map<Node*, Node*> m;
+
+public:
+	Node* copyRandomList(Node* node) {
+
+		if (!node)
+			return nullptr;
+
+		if (m.count(node))
+			return m[node];
+
+		auto* newNode = new Node(node->val);
+
+		m[node] = newNode;
+
+		newNode->random = copyRandomList(node->random);
+		newNode->next = copyRandomList(node->next);
+
+		return newNode;
+
+	}
+};
+
+class Solution {
+
+	std::unordered_map<Node*, Node*> m;
+
+	Node* copy(Node* node)
+	{
+		if (!node)
+			return nullptr;
+
+		if (m.count(node))
+			return m[node];
+
+		auto* newNode = new Node(node->val);
+
+		return m[node] = newNode;
+
+	}
+
+public:
+	Node* copyRandomList(Node* head) {
+
+		auto* node = head;
+
+		while (node)
+		{
+			auto* newNode = copy(node);
+			newNode->next = copy(node->next);
+			newNode->random = copy(node->random);
+
+			newNode = newNode->next;
+			node = node->next;
+		}
+
+		return m[head];
+	}
+};
