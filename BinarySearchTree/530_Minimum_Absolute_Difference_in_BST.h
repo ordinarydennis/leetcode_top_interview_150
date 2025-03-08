@@ -59,7 +59,7 @@ class Solution {
 				value1 = lnode->val;
 				lnode = lnode->right;
 			}
-			if (-1 == value1)
+			if (-1 != value1)
 			{
 				ret = std::min(
 					ret,
@@ -80,7 +80,7 @@ class Solution {
 				rnode = rnode->left;
 			}
 
-			if (-1 == value1)
+			if (-1 != value1)
 			{
 				ret = std::min(
 					ret,
@@ -102,14 +102,3 @@ public:
 		return ret;
 	}
 };
-
-
-
-[
-		 236, 
-	104,      701, 
- null, 227, null, 911]
-
-
-
-6 ~  
